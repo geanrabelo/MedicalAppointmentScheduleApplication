@@ -115,8 +115,7 @@ public class Consultation {
         public Consultation build(){
             return new Consultation(this.id,
                     this.patient,
-                    this.medic,
-                    this.hour,
+                    this.medic, this.hour,
                     this.status,
                     this.reasonCancellation);
         }
