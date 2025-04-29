@@ -24,7 +24,8 @@
     <modules>
         <module>core</module>
         <module>usecases</module>
-    </modules>
+		<module>application</module>
+	</modules>
     <scm>
 		<connection/>
 		<developerConnection/>
