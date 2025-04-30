@@ -41,11 +41,6 @@ public class ConsultationGatewayImpl implements ConsultationGateway {
     }
 
     @Override
-    public List<Medic> checkAvailability(Specialty specialty, LocalDate localDate) {
-        return null;
-    }
-
-    @Override
     public Consultation scheduleConsultation(Patient patient, Medic medic, LocalDateTime localDateTime) {
         if(patientEntityRepository.existsById(patient.getId()) && medicEntityRepository.existsById(medic.getId())){
             MedicEntity medicEntityDB = medicEntityRepository.getReferenceById(medic.getId());

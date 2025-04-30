@@ -9,8 +9,6 @@ import java.util.List;
 
 public interface ConsultationService {
 
-    List<MedicDetailsDTO> checkAvailability(ConsultationDataAvailability consultationDataAvailability);
-
     String saveConsultation(ConsultationCreationDTO consultationCreationDTO);
 
     void cancelConsultation(ConsultationCancelDTO consultationCancelDTO);

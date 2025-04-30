@@ -31,11 +31,6 @@ public class ConsultationServiceImpl implements ConsultationService {
     }
 
     @Override
-    public List<MedicDetailsDTO> checkAvailability(ConsultationDataAvailability consultationDataAvailability) {
-        return List.of();
-    }
-
-    @Override
     public String saveConsultation(ConsultationCreationDTO consultationCreationDTO) {
         Patient patient = patientUsecases.findById(consultationCreationDTO.patient_id());
         Medic medic = medicUsecases.findById(consultationCreationDTO.medic_id());

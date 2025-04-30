@@ -20,11 +20,6 @@ public class ConsultationUsecasesImpl implements ConsultationUsecases {
     }
 
     @Override
-    public List<Medic> checkAvailability(Specialty specialty, LocalDate localDate) {
-        return consultationGateway.checkAvailability(specialty, localDate);
-    }
-
-    @Override
     public Consultation scheduleConsultation(Patient patient, Medic medic, LocalDateTime localDateTime) {
         return consultationGateway.scheduleConsultation(patient, medic, localDateTime);
     }

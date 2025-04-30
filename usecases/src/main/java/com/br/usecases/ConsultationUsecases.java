@@ -11,8 +11,6 @@ import java.util.List;
 
 public interface ConsultationUsecases {
 
-    List<Medic> checkAvailability(Specialty specialty, LocalDate localDate);
-
     Consultation scheduleConsultation(Patient patient, Medic medic, LocalDateTime localDateTime);
 
     void cancelConsultation(String id, Patient patient, Medic medic, LocalDateTime localDateTime, String reason);
