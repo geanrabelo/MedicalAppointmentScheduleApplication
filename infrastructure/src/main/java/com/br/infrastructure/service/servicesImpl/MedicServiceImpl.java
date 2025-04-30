@@ -1,5 +1,6 @@
 package com.br.infrastructure.service.servicesImpl;
 
+import com.br.core.domain.Medic;
 import com.br.infrastructure.dto.medic.MedicCreationDTO;
 import com.br.infrastructure.dto.medic.MedicDetailsDTO;
 import com.br.infrastructure.service.interfaces.MedicService;
@@ -18,7 +19,9 @@ public class MedicServiceImpl implements MedicService {
 
     @Override
     public String saveMedic(MedicCreationDTO medicCreationDTO) {
-        return "";
+        Medic medic = medicCreationDTO.toMedic();
+        Medic medicSaved = medicUsecases.saveMedic(medic);
+        return "Medic: "+ medicSaved.getName() +" saved successfully";
     }
 
     @Override
