@@ -2,6 +2,7 @@ package com.br.infrastructure.service.gatewayImpl;
 
 import com.br.application.gateway.PatientGateway;
 import com.br.core.domain.Patient;
+import com.br.infrastructure.repository.PatientEntityRepository;
 import com.br.usecases.PatientUsecases;
 import org.springframework.stereotype.Component;
 
@@ -10,6 +11,11 @@ import java.util.List;
 @Component
 public class PatientGatewayImpl implements PatientGateway {
 
+    private final PatientEntityRepository patientEntityRepository;
+
+    public PatientGatewayImpl(PatientEntityRepository patientEntityRepository){
+        this.patientEntityRepository = patientEntityRepository;
+    }
 
     @Override
     public Patient savePatient(Patient patient) {
@@ -28,7 +34,9 @@ public class PatientGatewayImpl implements PatientGateway {
 
     @Override
     public Patient findByCpf(String cpf) {
+        if(existsByCpf(cpf)){
 
+        }
     }
 
     @Override
@@ -43,10 +51,11 @@ public class PatientGatewayImpl implements PatientGateway {
 
     @Override
     public boolean existsById(Long id) {
+        return patientEntityRepository.existsById(id);
     }
 
     @Override
     public boolean existsByCpf(String cpf) {
-
+        return patientEntityRepository.existsByCpf(cpf);
     }
 }
