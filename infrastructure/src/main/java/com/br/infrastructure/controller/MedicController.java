@@ -39,7 +39,7 @@ public class MedicController {
         return ResponseEntity.ok(medicDetailsDTO);
     }
 
-    @GetMapping(it"/crm")
+    @GetMapping("/crm")
     public ResponseEntity<MedicDetailsDTO> findByCrm(@RequestParam(name = "crm") String crm){
         MedicDetailsDTO medicDetailsDTO = medicService.findByCrm(crm);
         return ResponseEntity.ok(medicDetailsDTO);
