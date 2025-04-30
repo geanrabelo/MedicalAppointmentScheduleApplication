@@ -24,7 +24,10 @@ public class MedicGatewayImpl implements MedicGateway {
 
     @Override
     public Medic saveMedic(Medic medic) {
+        if(medicEntityRepository.existsByCrm(medic.getCrm())){
 
+        }
+        throw new MedicNotFound(EnumCode.MED0002.getMessage());
     }
 
     @Override
