@@ -29,7 +29,8 @@ public class MedicGatewayImpl implements MedicGateway {
 
     @Override
     public List<Medic> findAll() {
-
+        return medicEntityRepository
+                .findAll().stream().map(m -> new MedicEntityFromJpaToMedic(m).jpaToMedic()).toList();
     }
 
     @Override
