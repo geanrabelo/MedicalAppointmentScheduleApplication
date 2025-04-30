@@ -23,7 +23,7 @@ public class PatientGatewayImpl implements PatientGateway {
 
     @Override
     public Patient savePatient(Patient patient) {
-
+        if()
     }
 
     @Override

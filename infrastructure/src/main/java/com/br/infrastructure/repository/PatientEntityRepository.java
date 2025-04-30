@@ -10,4 +10,6 @@ public interface PatientEntityRepository extends JpaRepository<PatientEntity, Lo
     boolean existsByCpf(String cpf);
 
     Optional<PatientEntity> findByCpf(String cpf);
+
+    boolean existsByNumberPhone(String numberPhone);
 }
