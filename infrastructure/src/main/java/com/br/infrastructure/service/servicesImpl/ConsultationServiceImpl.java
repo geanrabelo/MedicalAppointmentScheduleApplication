@@ -5,15 +5,12 @@ import com.br.core.domain.Medic;
 import com.br.core.domain.Patient;
 import com.br.infrastructure.dto.consultation.ConsultationCancelDTO;
 import com.br.infrastructure.dto.consultation.ConsultationCreationDTO;
-import com.br.infrastructure.dto.consultation.ConsultationDataAvailability;
-import com.br.infrastructure.dto.medic.MedicDetailsDTO;
 import com.br.infrastructure.service.interfaces.ConsultationService;
 import com.br.usecases.ConsultationUsecases;
 import com.br.usecases.MedicUsecases;
 import com.br.usecases.PatientUsecases;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
 
 @Service
 public class ConsultationServiceImpl implements ConsultationService {
