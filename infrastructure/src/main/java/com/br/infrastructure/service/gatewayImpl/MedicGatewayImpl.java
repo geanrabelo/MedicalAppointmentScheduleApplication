@@ -11,6 +11,7 @@ import com.br.infrastructure.repository.MedicEntityRepository;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 
 @Component
@@ -40,7 +41,15 @@ public class MedicGatewayImpl implements MedicGateway {
 
     @Override
     public List<Medic> findByOpeningHours(LocalDateTime hour) {
-
+        List<MedicEntity> medicEntityList = new ArrayList<>();
+        for(MedicEntity medicEntity : medicEntityRepository.findAll()){
+            for(LocalDateTime hourS : medicEntity.getOpeningHours()){
+                if(hourS.equals(hour)){
+                    medicEntityList.add(medicEntity);
+                }
+            }
+        }
+        return medicEntityList.stream().map(m -> new MedicEntityFromJpaToMedic(m).jpaToMedic()).toList();
     }
 
     @Override
