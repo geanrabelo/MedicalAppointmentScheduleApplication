@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(name = "tb_medic")
+@RequestMapping("/v1/medical/medic")
 public class MedicController {
 
     private final MedicService medicService;
@@ -33,13 +33,13 @@ public class MedicController {
         return ResponseEntity.ok(medicService.findAll());
     }
 
-    @GetMapping(name = "/id")
+    @GetMapping("/id")
     public ResponseEntity<MedicDetailsDTO> findById(@RequestParam(name = "id") Long id){
         MedicDetailsDTO medicDetailsDTO = medicService.findById(id);
         return ResponseEntity.ok(medicDetailsDTO);
     }
 
-    @GetMapping(name = "/crm")
+    @GetMapping(it"/crm")
     public ResponseEntity<MedicDetailsDTO> findByCrm(@RequestParam(name = "crm") String crm){
         MedicDetailsDTO medicDetailsDTO = medicService.findByCrm(crm);
         return ResponseEntity.ok(medicDetailsDTO);

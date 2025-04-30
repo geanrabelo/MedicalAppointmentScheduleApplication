@@ -24,5 +24,9 @@ public class MedicEntity {
 
     @Enumerated(EnumType.STRING)
     private Specialty specialty;
+
+    @ElementCollection
+    @CollectionTable(name = "doctor_opening_hours", joinColumns = @JoinColumn(name = "doctor_id"))
+    @Column(name = "opening_time")
     private List<LocalDateTime> openingHours;
 }
