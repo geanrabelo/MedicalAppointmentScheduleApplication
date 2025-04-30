@@ -5,10 +5,12 @@ import com.br.infrastructure.dto.medic.MedicCreationDTO;
 import com.br.infrastructure.dto.medic.MedicDetailsDTO;
 import com.br.infrastructure.service.interfaces.MedicService;
 import com.br.usecases.MedicUsecases;
+import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import java.util.List;
 
+@Service
 public class MedicServiceImpl implements MedicService {
 
     private final MedicUsecases medicUsecases;
@@ -21,7 +23,7 @@ public class MedicServiceImpl implements MedicService {
     public String saveMedic(MedicCreationDTO medicCreationDTO) {
         Medic medic = medicCreationDTO.toMedic();
         Medic medicSaved = medicUsecases.saveMedic(medic);
-        return "Medic: "+ medicSaved.getName() +" saved successfully";
+        return "Medic "+ medicSaved.getName() +" saved successfully";
     }
 
     @Override
