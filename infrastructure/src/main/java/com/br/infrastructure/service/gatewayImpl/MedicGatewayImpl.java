@@ -2,6 +2,7 @@ package com.br.infrastructure.service.gatewayImpl;
 
 import com.br.application.gateway.MedicGateway;
 import com.br.core.domain.Medic;
+import com.br.core.enums.EnumCode;
 import com.br.core.exceptions.MedicNotFound;
 import com.br.infrastructure.dto.medic.MedicEntityFromJpaToMedic;
 import com.br.infrastructure.entity.MedicEntity;
@@ -42,7 +43,7 @@ public class MedicGatewayImpl implements MedicGateway {
             MedicEntity medicEntityDB = medicEntityRepository.getReferenceById(id);
             return new MedicEntityFromJpaToMedic(medicEntityDB).jpaToMedic();
         }
-        throw new MedicNotFound();
+        throw new MedicNotFound(EnumCode.MED0000.getMessage());
     }
 
     @Override
