@@ -1,0 +1,7 @@
+spring:
+  application:
+    name: MedicalAppointmentSchedule
+  datasource:
+    url: jdbc:postgresql://localhost:5432/
+    username: postgres
+    password: postgres
