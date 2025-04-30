@@ -42,13 +42,12 @@ public class MedicGatewayImpl implements MedicGateway {
     @Override
     public List<Medic> findByOpeningHours(LocalDateTime hour) {
         List<MedicEntity> medicEntityList = new ArrayList<>();
-        for(MedicEntity medicEntity : medicEntityRepository.findAll()){
+        for(MedicEntity medicEntity : medicEntityRepository.findAll())
             for(LocalDateTime hourS : medicEntity.getOpeningHours()){
                 if(hourS.equals(hour)){
                     medicEntityList.add(medicEntity);
                 }
             }
-        }
         return medicEntityList.stream().map(m -> new MedicEntityFromJpaToMedic(m).jpaToMedic()).toList();
     }
 
