@@ -1,5 +1,6 @@
 package com.br.infrastructure.dto.medic;
 
+import com.br.core.domain.Medic;
 import com.br.core.enums.Specialty;
 
 import java.time.LocalDateTime;
@@ -10,5 +11,14 @@ public record MedicDetailsDTO(Long id,
                               String crm,
                               Specialty specialty,
                               List<LocalDateTime> openingHours) {
+
+    public MedicDetailsDTO(Medic medic){
+        this(medic.getId(),
+                medic.getName(),
+                medic.getCrm(),
+                medic.getSpecialty(),
+                medic.getOpeningHours()
+        );
+    }
 
 }

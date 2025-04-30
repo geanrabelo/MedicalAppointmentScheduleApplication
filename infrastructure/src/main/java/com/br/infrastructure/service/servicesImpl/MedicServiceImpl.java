@@ -26,7 +26,8 @@ public class MedicServiceImpl implements MedicService {
 
     @Override
     public List<MedicDetailsDTO> findAll() {
-        return List.of();
+        List<Medic> medicList = medicUsecases.findAll();
+        return medicList.stream().map(MedicDetailsDTO::new).toList();
     }
 
     @Override
