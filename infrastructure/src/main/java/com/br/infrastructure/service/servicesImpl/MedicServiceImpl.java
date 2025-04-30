@@ -32,26 +32,39 @@ public class MedicServiceImpl implements MedicService {
 
     @Override
     public List<MedicDetailsDTO> findByOpeningHours(LocalDateTime hour) {
-        return List.of();
+        return medicUsecases.findByOpeningHours(hour).stream()
+                .map(MedicDetailsDTO::new).toList();
     }
 
     @Override
     public MedicDetailsDTO findById(Long id) {
-        return null;
+        Medic medic = medicUsecases.findById(id);
+        return new MedicDetailsDTO(medic);
     }
 
     @Override
     public MedicDetailsDTO findByCrm(String crm) {
-        return null;
+        Medic medic = medicUsecases.findByCrm(crm);
+        return new MedicDetailsDTO(medic);
     }
 
     @Override
     public String setOpeningHours(Long medicId, List<LocalDateTime> openingHours) {
-        return "";
+        MedicDetailsDTO medicDetailsDTO = findById(medicId);
+        Medic medic = new Medic.MedicBuilder()
+                .builder()
+                .id(medicDetailsDTO.id())
+                .name(medicDetailsDTO.name())
+                .crm(medicDetailsDTO.crm())
+                .speciality(medicDetailsDTO.specialty())
+                .openingHours(medicDetailsDTO.openingHours())
+                .build();
+        medicUsecases.setOpeningHours(medic, openingHours);
+        return "OpeningHours updated successfully";
     }
 
     @Override
     public void deleteById(Long id) {
-
+        medicUsecases.deleteById(id);
     }
 }
