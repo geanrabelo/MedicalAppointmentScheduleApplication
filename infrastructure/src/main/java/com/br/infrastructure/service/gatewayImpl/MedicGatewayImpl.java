@@ -5,6 +5,7 @@ import com.br.core.domain.Medic;
 import com.br.core.enums.EnumCode;
 import com.br.core.exceptions.MedicNotFound;
 import com.br.infrastructure.dto.medic.MedicEntityFromJpaToMedic;
+import com.br.infrastructure.dto.medic.MedicToJpa;
 import com.br.infrastructure.entity.MedicEntity;
 import com.br.infrastructure.repository.MedicEntityRepository;
 import com.br.usecases.MedicUsecases;
@@ -24,8 +25,10 @@ public class MedicGatewayImpl implements MedicGateway {
 
     @Override
     public Medic saveMedic(Medic medic) {
-        if(medicEntityRepository.existsByCrm(medic.getCrm())){
-
+        if(!medicEntityRepository.existsByCrm(medic.getCrm())){
+            MedicEntity conversion = new MedicToJpa(medic).toJpa();
+            MedicEntity medicSaved = medicEntityRepository.save(conversion);
+            return new MedicEntityFromJpaToMedic(medicSaved).jpaToMedic();
         }
         throw new MedicNotFound(EnumCode.MED0002.getMessage());
     }
