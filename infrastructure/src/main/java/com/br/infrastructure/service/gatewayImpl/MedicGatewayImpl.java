@@ -48,7 +48,11 @@ public class MedicGatewayImpl implements MedicGateway {
 
     @Override
     public Medic findByCrm(String crm) {
-
+        if(medicEntityRepository.existsByCrm(crm)){
+            MedicEntity medicEntityDB = medicEntityRepository.findByCrm(crm).get();
+            return new MedicEntityFromJpaToMedic(medicEntityDB).jpaToMedic();
+        }
+        throw new MedicNotFound(EnumCode.MED0001.getMessage());
     }
 
 
@@ -59,6 +63,10 @@ public class MedicGatewayImpl implements MedicGateway {
 
     @Override
     public void deleteById(Long id) {
-
+        if(medicEntityRepository.existsById(id)){
+            medicEntityRepository.deleteById(id);
+        }else{
+            throw new MedicNotFound(EnumCode.MED0000.getMessage());
+        }
     }
 }
