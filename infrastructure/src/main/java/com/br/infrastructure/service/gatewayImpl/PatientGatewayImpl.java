@@ -57,7 +57,18 @@ public class PatientGatewayImpl implements PatientGateway {
 
     @Override
     public Patient update(Patient patient) {
-
+        if(patientEntityRepository.existsById(patient.getId())){
+            PatientEntity patientEntityDB = patientEntityRepository.getReferenceById(patient.getId());
+            if(patient.getEmail() != null){
+                patientEntityDB.setEmail(patient.getEmail());
+            }
+            if(patient.getNumberPhone() != null){
+                patientEntityDB.setNumberPhone(patient.getNumberPhone());
+            }
+            PatientEntity patientSaved = patientEntityRepository.save(patientEntityDB);
+            return new PatientEntityFromJpaToPatient(patientEntityDB).jpaToPatient();
+        }
+        throw new PatientNotFound(EnumCode.PAT0000.getMessage());
     }
 
     @Override
