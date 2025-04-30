@@ -29,6 +29,7 @@ public class PatientGatewayImpl implements PatientGateway {
             PatientEntity patientSaved = patientEntityRepository.save(conversion);
             return new PatientEntityFromJpaToPatient(patientSaved).jpaToPatient();
         }
+        throw new PatientCon
     }
 
     @Override
