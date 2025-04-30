@@ -2,6 +2,10 @@ package com.br.infrastructure.service.gatewayImpl;
 
 import com.br.application.gateway.PatientGateway;
 import com.br.core.domain.Patient;
+import com.br.core.enums.EnumCode;
+import com.br.core.exceptions.PatientNotFound;
+import com.br.infrastructure.dto.patient.PatientEntityFromJpaToPatient;
+import com.br.infrastructure.entity.PatientEntity;
 import com.br.infrastructure.repository.PatientEntityRepository;
 import com.br.usecases.PatientUsecases;
 import org.springframework.stereotype.Component;
@@ -35,8 +39,10 @@ public class PatientGatewayImpl implements PatientGateway {
     @Override
     public Patient findByCpf(String cpf) {
         if(existsByCpf(cpf)){
-
+            PatientEntity patientEntityDB = patientEntityRepository.findByCpf(cpf).get();
+            return new PatientEntityFromJpaToPatient(patientEntityDB).jpaToPatient();
         }
+        throw new PatientNotFound(EnumCode.PAT0001.getMessage());
     }
 
     @Override
