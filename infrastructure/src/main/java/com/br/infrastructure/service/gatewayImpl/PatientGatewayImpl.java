@@ -33,7 +33,11 @@ public class PatientGatewayImpl implements PatientGateway {
 
     @Override
     public Patient findById(Long id) {
-
+        if(existsById(id)){
+            PatientEntity patientEntityDB = patientEntityRepository.getReferenceById(id);
+            return new PatientEntityFromJpaToPatient(patientEntityDB).jpaToPatient();
+        }
+        throw new PatientNotFound(EnumCode.PAT0001.getMessage());
     }
 
     @Override
