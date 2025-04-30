@@ -1,4 +1,4 @@
-package com.br.infrastructure.dto;
+package com.br.infrastructure.dto.patient;
 
 import java.time.LocalDate;
 

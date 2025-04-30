@@ -1,7 +1,7 @@
 package com.br.infrastructure.service.servicesImpl;
 
-import com.br.infrastructure.dto.MedicCreationDTO;
-import com.br.infrastructure.dto.MedicDetailsDTO;
+import com.br.infrastructure.dto.medic.MedicCreationDTO;
+import com.br.infrastructure.dto.medic.MedicDetailsDTO;
 import com.br.infrastructure.service.interfaces.MedicService;
 import com.br.usecases.MedicUsecases;
 

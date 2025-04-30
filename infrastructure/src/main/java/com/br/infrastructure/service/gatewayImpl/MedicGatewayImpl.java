@@ -2,6 +2,9 @@ package com.br.infrastructure.service.gatewayImpl;
 
 import com.br.application.gateway.MedicGateway;
 import com.br.core.domain.Medic;
+import com.br.core.exceptions.MedicNotFound;
+import com.br.infrastructure.dto.medic.MedicEntityFromJpaToMedic;
+import com.br.infrastructure.entity.MedicEntity;
 import com.br.infrastructure.repository.MedicEntityRepository;
 import com.br.usecases.MedicUsecases;
 import org.springframework.stereotype.Component;
@@ -35,7 +38,11 @@ public class MedicGatewayImpl implements MedicGateway {
 
     @Override
     public Medic findById(Long id) {
-
+        if(medicEntityRepository.existsById(id)){
+            MedicEntity medicEntityDB = medicEntityRepository.getReferenceById(id);
+            return new MedicEntityFromJpaToMedic(medicEntityDB).jpaToMedic();
+        }
+        throw new MedicNotFound();
     }
 
     @Override

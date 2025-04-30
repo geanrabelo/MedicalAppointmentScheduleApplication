@@ -1,4 +1,4 @@
-package com.br.infrastructure.dto;
+package com.br.infrastructure.dto.consultation;
 
 import com.br.core.enums.Specialty;
 

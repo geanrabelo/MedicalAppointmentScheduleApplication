@@ -1,8 +1,8 @@
 package com.br.infrastructure.service.interfaces;
 
-import com.br.infrastructure.dto.PatientCreationDTO;
-import com.br.infrastructure.dto.PatientDetailsDTO;
-import com.br.infrastructure.dto.PatientUpdateDTO;
+import com.br.infrastructure.dto.patient.PatientCreationDTO;
+import com.br.infrastructure.dto.patient.PatientDetailsDTO;
+import com.br.infrastructure.dto.patient.PatientUpdateDTO;
 
 import java.util.List;
 

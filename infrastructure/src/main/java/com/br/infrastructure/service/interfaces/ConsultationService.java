@@ -1,9 +1,9 @@
 package com.br.infrastructure.service.interfaces;
 
-import com.br.infrastructure.dto.ConsultationCancelDTO;
-import com.br.infrastructure.dto.ConsultationCreationDTO;
-import com.br.infrastructure.dto.ConsultationDataAvailability;
-import com.br.infrastructure.dto.MedicDetailsDTO;
+import com.br.infrastructure.dto.consultation.ConsultationCancelDTO;
+import com.br.infrastructure.dto.consultation.ConsultationCreationDTO;
+import com.br.infrastructure.dto.consultation.ConsultationDataAvailability;
+import com.br.infrastructure.dto.medic.MedicDetailsDTO;
 
 import java.util.List;
 
