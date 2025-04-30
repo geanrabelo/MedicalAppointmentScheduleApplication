@@ -3,6 +3,7 @@ package com.br.infrastructure.controller;
 import com.br.infrastructure.dto.MessageDTO;
 import com.br.infrastructure.dto.medic.MedicCreationDTO;
 import com.br.infrastructure.dto.medic.MedicDetailsDTO;
+import com.br.infrastructure.dto.medic.MedicOpeningHoursDTO;
 import com.br.infrastructure.service.interfaces.MedicService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +26,13 @@ public class MedicController {
     @Transactional
     public ResponseEntity<MessageDTO> saveMedic(@RequestBody @Validated MedicCreationDTO medicCreationDTO){
         String message = medicService.saveMedic(medicCreationDTO);
+        return ResponseEntity.ok(new MessageDTO(message));
+    }
+
+    @PutMapping
+    @Transactional
+    public ResponseEntity<MessageDTO> setOpeningHour(@RequestBody @Validated MedicOpeningHoursDTO medicOpeningHoursDTO) {
+        String message = medicService.setOpeningHours(medicOpeningHoursDTO.id(), medicOpeningHoursDTO.openingHours());
         return ResponseEntity.ok(new MessageDTO(message));
     }
 

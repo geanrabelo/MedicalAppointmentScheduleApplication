@@ -1,6 +1,7 @@
 package com.br.infrastructure.entity;
 
 import com.br.core.enums.Specialty;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -28,5 +29,6 @@ public class MedicEntity {
     @ElementCollection
     @CollectionTable(name = "doctor_opening_hours", joinColumns = @JoinColumn(name = "doctor_id"))
     @Column(name = "opening_time")
+    @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private List<LocalDateTime> openingHours;
 }
