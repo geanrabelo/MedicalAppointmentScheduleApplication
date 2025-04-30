@@ -5,6 +5,7 @@ import com.br.core.domain.Patient;
 import com.br.core.enums.EnumCode;
 import com.br.core.exceptions.PatientNotFound;
 import com.br.infrastructure.dto.patient.PatientEntityFromJpaToPatient;
+import com.br.infrastructure.dto.patient.PatientToJpa;
 import com.br.infrastructure.entity.PatientEntity;
 import com.br.infrastructure.repository.PatientEntityRepository;
 import com.br.usecases.PatientUsecases;
@@ -23,7 +24,11 @@ public class PatientGatewayImpl implements PatientGateway {
 
     @Override
     public Patient savePatient(Patient patient) {
-        if()
+        if(!existsByCpf(patient.getCpf()) && !patientEntityRepository.existsByNumberPhone(patient.getNumberPhone())){
+            PatientEntity conversion = new PatientToJpa(patient).toJpa();
+            PatientEntity patientSaved = patientEntityRepository.save(conversion);
+            return new PatientEntityFromJpaToPatient(patientSaved).jpaToPatient();
+        }
     }
 
     @Override
