@@ -8,7 +8,6 @@ import com.br.infrastructure.dto.medic.MedicEntityFromJpaToMedic;
 import com.br.infrastructure.dto.medic.MedicToJpa;
 import com.br.infrastructure.entity.MedicEntity;
 import com.br.infrastructure.repository.MedicEntityRepository;
-import com.br.usecases.MedicUsecases;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -65,7 +64,13 @@ public class MedicGatewayImpl implements MedicGateway {
 
     @Override
     public List<LocalDateTime> setOpeningHours(Medic medic, List<LocalDateTime> setOpeningHours) {
-
+        if(medicEntityRepository.existsById(medic.getId())){
+            MedicEntity medicDatabase = medicEntityRepository.getReferenceById(medic.getId());
+            medicDatabase.setOpeningHours(setOpeningHours);
+            medicEntityRepository.save(medicDatabase);
+            return medicDatabase.getOpeningHours();
+        }
+        throw new MedicNotFound(EnumCode.MED0000.getMessage());
     }
 
     @Override
