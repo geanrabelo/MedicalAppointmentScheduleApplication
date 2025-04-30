@@ -2,6 +2,8 @@ package com.br.infrastructure.exceptions;
 
 import com.br.core.exceptions.MedicConflict;
 import com.br.core.exceptions.MedicNotFound;
+import com.br.core.exceptions.PatientConflict;
+import com.br.core.exceptions.PatientNotFound;
 import com.br.infrastructure.exceptions.dto.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,4 +25,15 @@ public class GlobalExceptionHandler {
         return ErrorResponse.conflict(medicConflict.getMessage());
     }
 
+    @ExceptionHandler(PatientNotFound.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse patientNotFoundHandler(PatientNotFound patientNotFound){
+        return ErrorResponse.notFound(patientNotFound.getMessage());
+    }
+
+    @ExceptionHandler(PatientConflict.class)
+    @ResponseStatus(HttpStatus.CONFLICT)
+    public ErrorResponse patientConflictHandler(PatientConflict patientConflict){
+        return ErrorResponse.conflict(patientConflict.getMessage());
+    }
 }
