@@ -3,6 +3,7 @@ package com.br.infrastructure.service.gatewayImpl;
 import com.br.application.gateway.PatientGateway;
 import com.br.core.domain.Patient;
 import com.br.core.enums.EnumCode;
+import com.br.core.exceptions.PatientConflict;
 import com.br.core.exceptions.PatientNotFound;
 import com.br.infrastructure.dto.patient.PatientEntityFromJpaToPatient;
 import com.br.infrastructure.dto.patient.PatientToJpa;
@@ -29,7 +30,7 @@ public class PatientGatewayImpl implements PatientGateway {
             PatientEntity patientSaved = patientEntityRepository.save(conversion);
             return new PatientEntityFromJpaToPatient(patientSaved).jpaToPatient();
         }
-        throw new PatientCon
+        throw new PatientConflict(EnumCode.PAT0002.getMessage());
     }
 
     @Override
