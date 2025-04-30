@@ -42,7 +42,7 @@ public class ConsultationGatewayImpl implements ConsultationGateway {
 
     @Override
     public List<Medic> checkAvailability(Specialty specialty, LocalDate localDate) {
-
+        return null;
     }
 
     @Override
@@ -78,7 +78,23 @@ public class ConsultationGatewayImpl implements ConsultationGateway {
     }
 
     @Override
-    public void cancelConsultation(Patient patient, Medic medic, LocalDateTime localDateTime, String reason) {
-
+    public void cancelConsultation(String id, Patient patient, Medic medic, LocalDateTime localDateTime, String reason) {
+        if(patientEntityRepository.existsById(patient.getId())
+                && medicEntityRepository.existsById(medic.getId())
+                && consultationEntityRepository.existsById(id)){
+            MedicEntity medicEntityDB = medicEntityRepository.getReferenceById(medic.getId());
+            PatientEntity patientEntityDB = patientEntityRepository.getReferenceById(patient.getId());
+            List<LocalDateTime> openHour = medicEntityDB.getOpeningHours();
+            openHour.add(localDateTime);
+            medicEntityRepository.save(medicEntityDB);
+            ConsultationEntity consultationEntityDB = consultationEntityRepository.getReferenceById(id);
+            consultationEntityDB.setReasonCancellation(reason);
+            consultationEntityDB.setStatus(Status.CANCELLED);
+            consultationEntityRepository.save(consultationEntityDB);
+        } else if (!patientEntityRepository.existsById(patient.getId())) {
+            throw new PatientNotFound(EnumCode.PAT0000.getMessage());
+        }else {
+            throw new MedicNotFound(EnumCode.MED0000.getMessage());
+        }
     }
 }

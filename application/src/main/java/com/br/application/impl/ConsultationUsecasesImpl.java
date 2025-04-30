@@ -30,7 +30,7 @@ public class ConsultationUsecasesImpl implements ConsultationUsecases {
     }
 
     @Override
-    public void cancelConsultation(Patient patient, Medic medic, LocalDateTime localDateTime, String reason) {
-        consultationGateway.cancelConsultation(patient, medic, localDateTime, reason);
+    public void cancelConsultation(String id, Patient patient, Medic medic, LocalDateTime localDateTime, String reason) {
+        consultationGateway.cancelConsultation(id, patient, medic, localDateTime, reason);
     }
 }

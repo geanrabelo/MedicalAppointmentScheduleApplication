@@ -15,6 +15,6 @@ public interface ConsultationGateway {
 
     Consultation scheduleConsultation(Patient patient, Medic medic, LocalDateTime localDateTime);
 
-    void cancelConsultation(Patient patient, Medic medic, LocalDateTime localDateTime, String reason);
+    void cancelConsultation(String id, Patient patient, Medic medic, LocalDateTime localDateTime, String reason);
 
 }
