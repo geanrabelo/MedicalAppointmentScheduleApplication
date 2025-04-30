@@ -57,7 +57,11 @@ public class PatientGatewayImpl implements PatientGateway {
 
     @Override
     public void deleteById(Long id) {
-
+        if(existsById(id)){
+            patientEntityRepository.deleteById(id);
+        }else{
+            throw new PatientNotFound(EnumCode.PAT0000.getMessage());
+        }
     }
 
     @Override
