@@ -28,7 +28,8 @@ public class PatientGatewayImpl implements PatientGateway {
 
     @Override
     public List<Patient> findAll() {
-
+        return patientEntityRepository.findAll()
+                .stream().map(p -> new PatientEntityFromJpaToPatient(p).jpaToPatient()).toList();
     }
 
     @Override
