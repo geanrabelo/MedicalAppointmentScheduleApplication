@@ -17,7 +17,7 @@ public interface MedicUsecases {
 
     Medic findByCrm(String crm);
 
-    List<LocalDateTime> setOpeningHours(List<LocalDateTime> setOpeningHours);
+    List<LocalDateTime> setOpeningHours(Medic medic, List<LocalDateTime> setOpeningHours);
 
     void deleteById(Long id);
 }

@@ -41,8 +41,8 @@ public class MedicUsecasesImpl implements MedicUsecases {
     }
 
     @Override
-    public List<LocalDateTime> setOpeningHours(List<LocalDateTime> setOpeningHours) {
-        return medicGateway.setOpeningHours(setOpeningHours);
+    public List<LocalDateTime> setOpeningHours(Medic medic,List<LocalDateTime> setOpeningHours) {
+        return medicGateway.setOpeningHours(medic, setOpeningHours);
     }
 
     @Override

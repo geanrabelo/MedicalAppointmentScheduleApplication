@@ -1,4 +1,6 @@
 package com.br.infrastructure.dto;
 
-public interface PatientUpdateDTO {
+public record PatientUpdateDTO(Long id,
+                               String email,
+                               String numberPhone) {
 }

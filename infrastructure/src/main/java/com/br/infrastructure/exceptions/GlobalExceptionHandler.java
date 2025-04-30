@@ -1,4 +1,9 @@
-package com.br.infrastructure.exceptions.dto;
+package com.br.infrastructure.exceptions;
 
+import org.springframework.web.bind.annotation.RestControllerAdvice;
+
+@RestControllerAdvice
 public class GlobalExceptionHandler {
+
+
 }

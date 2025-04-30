@@ -1,4 +1,5 @@
 package com.br.infrastructure.exceptions.dto;
 
-public class ErrorField {
+public record ErrorField(String field,
+                         String message) {
 }
