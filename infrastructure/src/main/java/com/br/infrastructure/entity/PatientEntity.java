@@ -1,5 +1,6 @@
 package com.br.infrastructure.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.persistence.*;
 import lombok.*;
 
@@ -21,6 +22,11 @@ public class PatientEntity {
     private String name;
     private String cpf;
     private String email;
+
+    @Column(name = "number_phone")
     private String numberPhone;
+
+    @Column(name = "date_of_birth")
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 }
