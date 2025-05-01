@@ -32,5 +32,6 @@ public class ConsultationEntity {
     @Enumerated(EnumType.STRING)
     private Status status;
 
+    @Column(name = "reason_cancellation")
     private String reasonCancellation;
 }

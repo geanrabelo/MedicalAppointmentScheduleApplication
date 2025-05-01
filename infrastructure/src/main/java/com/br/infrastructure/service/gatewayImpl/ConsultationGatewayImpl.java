@@ -10,6 +10,7 @@ import com.br.core.enums.Status;
 import com.br.core.exceptions.MedicHourNotAvailable;
 import com.br.core.exceptions.MedicNotFound;
 import com.br.core.exceptions.PatientNotFound;
+import com.br.infrastructure.dto.consultation.ConsultationEntityFromJpaToConsultation;
 import com.br.infrastructure.dto.consultation.ConsultationToJpa;
 import com.br.infrastructure.entity.ConsultationEntity;
 import com.br.infrastructure.entity.MedicEntity;
@@ -62,7 +63,8 @@ public class ConsultationGatewayImpl implements ConsultationGateway {
                         .hour(hour.get())
                         .status(Status.SCHEDULED)
                         .build();
-                consultationEntityRepository.save(consultationEntity);
+                ConsultationEntity consultationSaved = consultationEntityRepository.save(consultationEntity);
+                return new ConsultationEntityFromJpaToConsultation(consultationSaved).toConsultation();
             }
             throw new MedicHourNotAvailable(EnumCode.MED0003.getMessage());
         } else if (!patientEntityRepository.existsById(patient.getId())) {
