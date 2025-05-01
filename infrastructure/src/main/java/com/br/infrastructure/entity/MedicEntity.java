@@ -27,7 +27,7 @@ public class MedicEntity {
     private Specialty specialty;
 
     @ElementCollection
-    @CollectionTable(name = "doctor_opening_hours", joinColumns = @JoinColumn(name = "doctor_id"))
+    @CollectionTable(name = "doctor_opening_hours", joinColumns = @JoinColumn(name = "medic_id"))
     @Column(name = "opening_time")
     @JsonFormat(pattern = "yyyy-MM-dd'T'HH:mm:ss")
     private List<LocalDateTime> openingHours;
