@@ -7,7 +7,8 @@ public enum EnumCode {
     MED0003("Medic not available in this hour"),
     PAT0000("Patient find by id not found"),
     PAT0001("Patient find by cpf not found"),
-    PAT0002("Already exists patient with cpf");
+    PAT0002("Already exists patient with cpf"),
+    CON0001("Consultation find by id not found");
 
     private String message;
 

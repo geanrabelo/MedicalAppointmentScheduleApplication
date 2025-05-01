@@ -40,4 +40,10 @@ public class GlobalExceptionHandler {
         return ErrorResponse.conflict(patientConflict.getMessage());
     }
 
+    @ExceptionHandler(ConsultationNotFound.class)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    public ErrorResponse consultatioNotFoundHandler(ConsultationNotFound consultationNotFound){
+        return ErrorResponse.notFound(consultationNotFound.getMessage());
+    }
+
 }
