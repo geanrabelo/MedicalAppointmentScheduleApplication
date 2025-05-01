@@ -6,12 +6,9 @@ import com.br.core.enums.EnumCode;
 import com.br.core.exceptions.PatientConflict;
 import com.br.core.exceptions.PatientNotFound;
 import com.br.infrastructure.dto.patient.PatientEntityFromJpaToPatient;
-import com.br.infrastructure.dto.patient.PatientRedis;
 import com.br.infrastructure.dto.patient.PatientToJpa;
 import com.br.infrastructure.entity.PatientEntity;
 import com.br.infrastructure.repository.PatientEntityRepository;
-import com.br.usecases.PatientUsecases;
-import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
@@ -20,13 +17,9 @@ import java.util.List;
 public class PatientGatewayImpl implements PatientGateway {
 
     private final PatientEntityRepository patientEntityRepository;
-    private final RedisTemplate<String, PatientRedis> patientRedisTemplate;
-    private static final String keyPattern = "patient: ";
 
-    public PatientGatewayImpl(PatientEntityRepository patientEntityRepository,
-                              RedisTemplate<String, PatientRedis> patientRedisTemplate){
+    public PatientGatewayImpl(PatientEntityRepository patientEntityRepository){
         this.patientEntityRepository = patientEntityRepository;
-        this.patientRedisTemplate = patientRedisTemplate;
     }
 
     @Override
@@ -34,11 +27,6 @@ public class PatientGatewayImpl implements PatientGateway {
         if(!existsByCpf(patient.getCpf()) && !patientEntityRepository.existsByNumberPhone(patient.getNumberPhone())){
             PatientEntity conversion = new PatientToJpa(patient).toJpa();
             PatientEntity patientSaved = patientEntityRepository.save(conversion);
-
-            PatientRedis patientRedis = new PatientRedis(patientSaved);
-
-            patientRedisTemplate.opsForZSet().add(keyPattern, patientRedis, patientRedis.id());
-
             return new PatientEntityFromJpaToPatient(patientSaved).jpaToPatient();
         }
         throw new PatientConflict(EnumCode.PAT0002.getMessage());
